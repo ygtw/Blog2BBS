@@ -85,7 +85,9 @@ long_arr = [];
 mapurl = [];
 
 }
-
+function replaceAll(txt, replace, with_this) {
+return txt.replace(new RegExp(replace, 'g'),with_this);
+}
 function runstrip () {
 
   init();
@@ -95,7 +97,7 @@ function runstrip () {
 
   $('#myModal').modal()
 
-  html=html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link->$1) ");
+  html=html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, "$2 (Link-> $1)");
   html=jQuery(html).text()
 console.log( html  );
 
@@ -108,7 +110,9 @@ console.log( html  );
   while (item = re.exec(s))
       long_arr.push(item[1]);
 
- console.log(long_arr)
+// console.log(long_arr)
+
+  html=replaceAll(html,"Link->", "");
 
   I = long_arr.length - 1
 
