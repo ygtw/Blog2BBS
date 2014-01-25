@@ -30,9 +30,9 @@
 textarea{ 
 
 
-  height:300px; 
-  min-height:300px;  
-  max-height:300px;
+  height:250px; 
+  min-height:250px;  
+  max-height:250px;
 }
 
 </style>
@@ -190,13 +190,24 @@ function get_short_url(long_url, login, api_key, func)
   </head>
 
   <body>
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
-      <div class="modal-body">
+      <div class="modal-body"><br>
+        <br>
+        <br>
+        <br>
+        
         讀取中...
+        <br>
+        <br>
+        <br>
+        
         <br>
            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     
@@ -209,12 +220,16 @@ function get_short_url(long_url, login, api_key, func)
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+            <div id="fb-root"></div>
+
           </button>
           <a class="navbar-brand" href="#">Blog2BBS</a>
+
         </div>
         <div class="navbar-collapse collapse">
 
@@ -231,7 +246,10 @@ function get_short_url(long_url, login, api_key, func)
     <div class="jumbotron">
       <div class="container">
         <h3>        <img src="logo.png" />部落格文章轉到BBS的小幫手</h3>
-        <p>想要快速把部落格文章PO到BBS?只要將您部落格文章的HTML貼到對話框，就可轉成純文字，會特地為您保留文章中的超連結，就可以直接PO到BBS囉</p>
+        <p>想要快速把部落格文章PO到BBS?<br>
+          只要將您部落格文章的HTML貼到對話框，就可轉成純文字，會特地為您保留文章中的超連結，就可以直接PO到BBS囉!</p>
+<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fygtw.github.io%2FBlog2BBS%2F&amp;width&amp;layout=button_count&amp;action=recommend&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=256693654490509" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+
 
       </div>
     </div>
@@ -240,7 +258,7 @@ function get_short_url(long_url, login, api_key, func)
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-5">
-          <h2><span class="glyphicon glyphicon-file"></span>請貼上部落格文章的HTML</h2>
+          <h2><span class="glyphicon glyphicon-file"></span> 請貼上部落格文章的HTML</h2>
 
 
 <textarea id="htmls" class="form-control" onmouseover="this.select()" >
@@ -274,7 +292,7 @@ function get_short_url(long_url, login, api_key, func)
 
 
         <div class="col-md-5">
-          <h2>BBS</h2>
+          <h2><span class="glyphicon glyphicon-ok-sign"></span> 請拿去貼到BBS</h2>
 
           <textarea id="output" class="form-control" onmouseover="this.select()" >
 
