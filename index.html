@@ -95,7 +95,7 @@ function runstrip () {
 
   $('#myModal').modal()
 
-  html=html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link->$1) ");
+  html=html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link-> $1) ");
   html=jQuery(html).text()
 console.log( html  );
 
