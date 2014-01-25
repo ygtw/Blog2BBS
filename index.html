@@ -97,20 +97,20 @@ function runstrip () {
 
   $('#myModal').modal()
 
-  html=html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, "$2 (Link-> $1 )");
+  html=html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, "$2 ( Link-> $1 )");
   html=jQuery(html).text()
 console.log( html  );
 
  
   
    var s = html,
-    re = /Link->(.*?)[)]/gi,
+    re = /Link->(.*?)[\s][)]/gi,
     item;
 
   while (item = re.exec(s))
       long_arr.push(item[1]);
 
-// console.log(long_arr)
+ console.log(long_arr)
 
   html=replaceAll(html,"Link->", "");
 
