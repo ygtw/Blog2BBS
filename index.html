@@ -1,0 +1,259 @@
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+var login = "o_5gjs7hemdi";
+var api_key = "R_2cf780fee5348c6bc9b3df4d788fb40f";
+var long_url = "http://www.kozlenko.info";
+
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+
+
+
+});
+
+var I;
+var html = "";
+	var short_arr=[];
+		var long_arr = [];
+		var mapurl = [];
+
+function runstrip () {
+	// body...
+
+	html = $("#htmls").val()
+
+
+	html=html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link->$1) ");
+	html=jQuery(html).text()
+
+	
+	//console.log( html  );
+
+   var s = html,
+    re = /Link->(.*?)[)]/gi,
+    item;
+
+	while (item = re.exec(s))
+	    long_arr.push(item[1]);
+
+
+	I = long_arr.length - 1
+
+	for (var i = long_arr.length - 1  ; i >= 0; i--) {
+
+		var long_url = long_arr[i];
+
+		get_short_url(long_url, login, api_key, function(short_url) {
+
+		//	short_arr.push(short_url)
+			I--;
+			if(I==-1) replace_url(html);
+
+		});
+	};
+
+
+
+
+
+
+//	console.log( jQuery(html).text()   );
+}
+
+function replace_url (html) {
+	// body...
+
+	for (var i = long_arr.length - 1  ; i >= 0; i--) {
+		html=html.replace(long_arr[i], mapurl[ long_arr[i] ]);
+	}
+//	console.log(html)
+	$("#output").html(html);
+}
+
+
+function get_short_url(long_url, login, api_key, func)
+{
+    $.getJSON(
+        "http://api.bitly.com/v3/shorten?callback=?", 
+        { 
+            "format": "json",
+            "apiKey": api_key,
+            "login": login,
+            "longUrl": long_url
+        },
+        function(response)
+        {
+        	mapurl[long_url] = response.data.url;
+        	//console.log(response)
+            func(response.data.url);
+        }
+    );
+}
+</script>
+
+
+<textarea id="htmls" onkeyup="runstrip()"> 
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+餐廳名稱：健泰牛肉湯</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+消費時間：2013.12.21</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+消費時段：20:30</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+地址：717台灣台南市仁德區民安路一段420號</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+電話：06-2708761</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+營業時間：08:00-14:00 16:00-21:00</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+休息時間：無</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+每人平均價位：100</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+推薦菜色：無</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+可否刷卡：無</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+有無包廂：無</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+官網：無</div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+<br /></div>
+<div class="separator" style="background-color: #fefafa; clear: both; color: #333333; font-family: 微軟正黑體, 微軟正黑體, Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: large; line-height: 33.599998474121094px; text-align: center;">
+參考評價：3.5/5☆☆☆</div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-aw_fEYWkscQ/UuJ04xSV1xI/AAAAAAACKI8/z_UzmAs0JWA/s1600/%E5%81%A5%E6%B3%B0%E7%89%9B%E8%82%89%E6%B9%AF.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-aw_fEYWkscQ/UuJ04xSV1xI/AAAAAAACKI8/z_UzmAs0JWA/s1600/%E5%81%A5%E6%B3%B0%E7%89%9B%E8%82%89%E6%B9%AF.jpg" height="360" width="640" /></a></div>
+<br />
+當一家土產牛肉店同時賣牛肉湯和牛肉麵<br />
+是要選擇哪一種呢?<br />
+我們身為牛肉湯部落格，當然以牛肉湯為先<br />
+可是老闆說：我們家的牛肉麵也很好吃唷！<br />
+為了大家，只好再點一碗...<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-1bNllm2UIQM/UuJp5Axc7EI/AAAAAAACKGc/bWx9v9EFoNo/s1600/DSC06776.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-1bNllm2UIQM/UuJp5Axc7EI/AAAAAAACKGc/bWx9v9EFoNo/s1600/DSC06776.JPG" height="360" width="640" /></a></div>
+<br />
+帶著說不上來的特殊香氣，有加薑絲的牛腩湯頭，蠻順口的<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-JYD3TrNeErE/UuJp9LsMd2I/AAAAAAACKHM/TvQlKPDFUVs/s1600/DSC06786.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-JYD3TrNeErE/UuJp9LsMd2I/AAAAAAACKHM/TvQlKPDFUVs/s1600/DSC06786.JPG" height="360" width="640" /></a></div>
+<br />
+厲害的來了~人客啊，這肉實在是<b><span style="font-size: x-large;">超厚</span></b>的啊~~<br />
+<div>
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-6yufekrdetE/UuJp7NLparI/AAAAAAACKG0/Yc2IOWLpbjw/s1600/DSC06778.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-6yufekrdetE/UuJp7NLparI/AAAAAAACKG0/Yc2IOWLpbjw/s1600/DSC06778.JPG" height="360" width="640" /></a></div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+不但厚切，還切很大塊！</div>
+<div class="separator" style="clear: both; text-align: center;">
+&nbsp;<a href="http://1.bp.blogspot.com/-35mHY0OBF3A/UuJp452XR7I/AAAAAAACKGk/R4TTuINr69g/s1600/DSC06775.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-35mHY0OBF3A/UuJp452XR7I/AAAAAAACKGk/R4TTuINr69g/s1600/DSC06775.JPG" height="360" width="640" /></a></div>
+<br />
+塗塗改改的菜單，選擇不少<br />
+<!--more--><br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-7qGsuOuxe8c/UuJqClpogCI/AAAAAAACKIc/0ghdHnD9qKY/s1600/DSC06899.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-7qGsuOuxe8c/UuJqClpogCI/AAAAAAACKIc/0ghdHnD9qKY/s1600/DSC06899.JPG" height="360" width="640" /></a></div>
+<br />
+紅燒牛肉麵有酸菜和許多蔥花，湯頭偏甜<br />
+麵條較扁寬，帶點Q勁，也蠻好吃的<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-6G0UIVfo8Xc/UuJqCkdRoDI/AAAAAAACKIg/bLkeZJKgVks/s1600/DSC06901.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-6G0UIVfo8Xc/UuJqCkdRoDI/AAAAAAACKIg/bLkeZJKgVks/s1600/DSC06901.JPG" height="360" width="640" /></a></div>
+<br />
+不像有些店家牛肉麵為了降低成本就改澳洲牛<br />
+健泰一樣是用台灣牛，<span style="font-size: large;">肉非常嫩</span>，老闆說：這是上等的肉唷！<br />
+<div>
+附近還有一間一品牛肉店，也是同樣有賣牛肉麵的牛肉湯店<br />
+<br /></div>
+<a href="http://4.bp.blogspot.com/-gVoTjQI4-aA/UuJp7pK6suI/AAAAAAACKG8/I8PqqsFWbLw/s1600/DSC06780.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" src="http://4.bp.blogspot.com/-gVoTjQI4-aA/UuJp7pK6suI/AAAAAAACKG8/I8PqqsFWbLw/s1600/DSC06780.JPG" height="360" width="640" /></a><br />
+<br />
+肉燥飯，很有賣相，但味道普普通通<br />
+<div>
+<br /></div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td><a href="http://4.bp.blogspot.com/-hkQgeaqEiUo/UuJp5MfCEvI/AAAAAAACKGg/-3RNeaE4t7g/s1600/DSC06774.JPG" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="http://4.bp.blogspot.com/-hkQgeaqEiUo/UuJp5MfCEvI/AAAAAAACKGg/-3RNeaE4t7g/s1600/DSC06774.JPG" height="360" width="640" /></a></td></tr>
+<tr><td class="tr-caption"><span style="font-size: small;"><br />老闆切肉中，好帥呀</span><br />
+<span style="font-size: small;"><br /></span></td></tr>
+</tbody></table>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-1nWVgEmmer8/UuJp91fqDzI/AAAAAAACKHY/QvvCGR1ghQU/s1600/DSC06787.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-1nWVgEmmer8/UuJp91fqDzI/AAAAAAACKHY/QvvCGR1ghQU/s1600/DSC06787.JPG" height="360" width="640" /></a></div>
+<br />
+老闆工作都穿東成醬油的招牌，看起來很兇，但人很親切<br />
+在臺南，同時賣清燙牛肉湯和紅燒牛肉麵的店很少<br />
+為什麼會想這麼做呢?<br />
+<br />
+老闆說：原本只賣牛肉湯，但太多客人要吃牛肉麵了，就順便賣啦<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-gQV54lXLIKM/UuJp98uD9uI/AAAAAAACKHU/wDPm4qINS3Y/s1600/DSC06788.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-gQV54lXLIKM/UuJp98uD9uI/AAAAAAACKHU/wDPm4qINS3Y/s1600/DSC06788.JPG" height="360" width="640" /></a></div>
+<br />
+特別的碗，碗上有牛唷！<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-pAWgRttzCZI/UuJp-k4DRhI/AAAAAAACKHc/VHTCmw8jxv8/s1600/DSC06790.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-pAWgRttzCZI/UuJp-k4DRhI/AAAAAAACKHc/VHTCmw8jxv8/s1600/DSC06790.JPG" height="360" width="640" /></a></div>
+<br />
+小編不得不說桌上的桌巾實在太可愛了<br />
+和霸氣的牛肉湯氣氛不太搭呀XD<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-Fc7QH3b1bX0/UuJp_JvPhTI/AAAAAAACKHo/cWAIVvFbzAo/s1600/DSC06791.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-Fc7QH3b1bX0/UuJp_JvPhTI/AAAAAAACKHo/cWAIVvFbzAo/s1600/DSC06791.JPG" height="360" width="640" /></a></div>
+<br />
+店面非常家常，讓人想起肉燥飯很好吃的<a href="http://beefsouptn.blogspot.tw/2013/03/blog-post.html">忠嫂</a><br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-AfhhAWA4EjM/UuJp_QX3XjI/AAAAAAACKHw/E8b3O9JiPIA/s1600/DSC06792.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-AfhhAWA4EjM/UuJp_QX3XjI/AAAAAAACKHw/E8b3O9JiPIA/s1600/DSC06792.JPG" height="360" width="640" /></a></div>
+<br />
+牛頭在"牛"上，難得有用心在字體的招牌<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-3UjqAnrhKno/UuJp_njyOnI/AAAAAAACKH0/CZWt7YRaDvA/s1600/DSC06793.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-3UjqAnrhKno/UuJp_njyOnI/AAAAAAACKH0/CZWt7YRaDvA/s1600/DSC06793.JPG" height="320" width="180" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+店家招牌</div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-bG59OZL-bII/UuJqASKqv_I/AAAAAAACKIE/pqAQuoJh3No/s1600/DSC06794.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-bG59OZL-bII/UuJqASKqv_I/AAAAAAACKIE/pqAQuoJh3No/s1600/DSC06794.JPG" height="360" width="640" /></a></div>
+<br />
+所以，厚切牛肉湯 VS 超嫩牛肉麵<br />
+小編還是建議先選牛肉湯！<br />
+畢竟，好吃的牛肉麵太容易找啦XD<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-67HAwLu2kfE/UuJqAjQewdI/AAAAAAACKII/N4Ua8RnTGKs/s1600/DSC06795.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-67HAwLu2kfE/UuJqAjQewdI/AAAAAAACKII/N4Ua8RnTGKs/s1600/DSC06795.JPG" height="360" width="640" /></a></div>
+<br />
+隔壁也是賣牛肉麵的，真尷尬，左邊那間才是健泰啦XD<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-mODp3c_EV5k/UuJqBIai_hI/AAAAAAACKIM/BkDewVl41pw/s1600/DSC06796.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-mODp3c_EV5k/UuJqBIai_hI/AAAAAAACKIM/BkDewVl41pw/s1600/DSC06796.JPG" height="360" width="640" /></a></div>
+<br />
+從市區出發的話，從崇善路直走就會到這裡唷<br />
+<br />
+
+
+</textarea> 
+
+<textarea id="output"> 
+
+</textarea>
+
+	<input type="button" value="submit" onclick="runstrip()"/>
+
+
+	<!--
+
+
+http://stackoverflow.com/questions/4760538/using-only-javascript-to-shrink-urls-using-the-bit-ly-api
+
+http://stackoverflow.com/questions/10864783/javascript-regexp-non-capturing-groups/10864877#10864877
+	-->
