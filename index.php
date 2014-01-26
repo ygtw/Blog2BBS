@@ -240,7 +240,7 @@ function get_short_url(long_url, login, api_key, func)
         <br>
         <br>
         
-        讀取中...
+		處理中...
         <br>
         <br>
         <br>
@@ -280,14 +280,15 @@ function get_short_url(long_url, login, api_key, func)
 
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <div class="jumbotron" style="">
       <div class="container">
    
-        <img src="logo.png" />
-        <p>把圖文並茂的Blog文章轉到PTT是很多部落客在做的事情，可是受限於PTT只支援文字，因此很多部落客只有複製文字轉到BBS，如果能附上圖片與連結的網址，就能讓BBS純文章更加完整。<br><br>
-          只要將您部落格文章的HTML貼到對話框，就可轉成純文字，會特地為您保留文章中的超連結，並使用goo.gl縮網址，您就可以直接PO到BBS囉! <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fblog2bbs.herokuapp.com%2F&amp;width&amp;layout=button&amp;action=recommend&amp;show_faces=true&amp;share=true&amp;height=80&amp;appId=256693654490509" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe></p>
+        <img src="logo.png" /> <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fblog2bbs.herokuapp.com%2F&amp;width&amp;layout=button&amp;action=recommend&amp;show_faces=true&amp;share=true&amp;height=80&amp;appId=256693654490509" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:20px;" allowTransparency="true"></iframe>
+        <br>
 
-
+      把圖文並茂的Blog文章轉到PTT這類的BBS是很多部落客在做的事情，可是受限於BBS只支援文字，因此很多部落客只有複製文字轉到BBS，如果能附上圖片與連結的網址，就能讓BBS純文章更加完整。<br>
+          現在 ~ 使用Blog2BBS，只要將Blog文章的HTML貼到對話框，就可轉成純文字，<br>會特地為您保留文章中的<span style="color:yellow" >超連結，並自動轉成goo.gl縮網址</span>，您就可以把圖文並茂的文章PO到BBS囉!
+<br>
       </div>
     </div>
 
