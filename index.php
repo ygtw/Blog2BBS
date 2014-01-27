@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
-
+    <meta name="author" content="ygtw">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="Blog2BBS - 部落格文章轉到BBS的小幫手" name="Description" />
+    <meta content="Blog, BBS, 轉貼, 文章, 轉換" lang="zh-TW" name="keywords" />
+    <meta content="index" name="robots" />
     <title>Blog2BBS</title>
 
     <!-- Bootstrap core CSS -->
@@ -56,7 +59,7 @@ textarea{
       function load() {
         gapi.client.setApiKey('AIzaSyB8lHJokkBISJDt4qpuaYze_MOb6FTZdb0');
         gapi.client.load('urlshortener', 'v1', makeRequest);
-//        $("#")
+        $("#btn_run").removeAttr("disabled");
       }
     </script>
 
@@ -170,8 +173,11 @@ $.ajax({
   data: { "html": html }
 })
   .done(function( msg ) {
-    console.log( "Data Saved: " + msg );
-     $("#output").val( msg.substr(23) );
+   // console.log( "Data Saved: " + msg );
+	
+	var adtext = "\n// 本文使用 Blog2BBS 自動將Blog文章轉成縮址的BBS純文字 //";
+	msg = msg.substr(23) + adtext 
+     $("#output").val( msg );
   });
 
 
@@ -276,7 +282,9 @@ function get_short_url(long_url, login, api_key, func)
             <div id="fb-root"></div>
 
           </button>
-          <a class="navbar-brand" href="#">Blog2BBS - 部落格文章轉到BBS的小幫手</a> 
+          <a class="navbar-brand" href="#">Blog2BBS - 部落格到BBS的小幫手</a> 
+<a href="https://github.com/ygtw/Blog2BBS"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+
 
         </div>
         <div class="navbar-collapse collapse">
@@ -331,7 +339,7 @@ function get_short_url(long_url, login, api_key, func)
 <br>
 <br>
 <br>
-<button type="button" onclick="runstrip()" data-loading-text="Loading..." class="btn btn-lg btn-primary">
+<button type="button" id="btn_run" disabled="disabled" onclick="runstrip()" data-loading-text="Loading..." class="btn btn-lg btn-success">
   轉換
 <span  class="glyphicon glyphicon-arrow-right" ></span>
 </button>
@@ -368,6 +376,9 @@ http://stackoverflow.com/questions/10864783/javascript-regexp-non-capturing-grou
       <footer>
         <p>&copy; 2014 zjuajun@gmail.com</p>
       </footer>
+	  
+	  
+	  
     </div> <!-- /container -->
 
 
