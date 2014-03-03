@@ -114,7 +114,7 @@ function runstrip () {
   $('#myModal').modal()
 
   html=html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, "$2 ( Link-> $1 )");
-  html=jQuery(html).text()
+  html=html.replace(/<(?:.|\n)*?>/gm, '');
 console.log( "QQ"  );
 console.log( html  );
 
@@ -175,7 +175,7 @@ $.ajax({
   .done(function( msg ) {
    // console.log( "Data Saved: " + msg );
 	
-	var adtext = "\n// 本文使用 Blog2BBS 自動將Blog文章轉成縮址的BBS純文字 //";
+	var adtext = "\n\n// 本文使用 Blog2BBS 自動將Blog文章轉成縮址的BBS純文字 //";
 	msg = msg.substr(23) + adtext 
      $("#output").val( msg );
   });
