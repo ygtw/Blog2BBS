@@ -105,7 +105,12 @@ var long_url = "http://www.kozlenko.info";
 
 $( document ).ready(function() {
   // Handler for .ready() called.
+if (navigator.appVersion.indexOf("Chrome/") == -1) {
+// modify button 
+  $('#chromeModal').modal()
 
+
+}
 
 
 });
@@ -305,6 +310,34 @@ function get_short_url(long_url, login, api_key, func)
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="chromeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body"><br>
+        <br>
+        <br>
+        <br>
+        
+		抱歉，本服務目前只支援Google Chrome瀏覽器。
+        <br>
+        <br>
+        <br>
+        
+        <br>
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
